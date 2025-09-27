@@ -5,3 +5,6 @@ class Students(models.Model):
     # https://docs.google.com/spreadsheets/d/1HbxbGMj871pJwRKxQ-kIwWLWhZHm0flN8v9e0GeCYEc/edit?usp=sharing
     name = models.CharField(max_length=50) # required
     age = models.IntegerField(blank=True, null=True) # optional
+
+    def __str__(self):
+        return f"{self.name} | Age : {self.age}"
