@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from app.models import Students
+from app.models import Students, Teacher
 
 def home(request):
     # ORM : Object Relational Mapping
@@ -48,10 +48,10 @@ def home(request):
 
 def bootstrap_home(request):
 
-    students = Students.objects.all()
+    teachers = Teacher.objects.all()
 
     context = {
-        "students": students
+        "teachers": teachers
     }
 
     return render(request, "app/bootstrap-home.html", context)
