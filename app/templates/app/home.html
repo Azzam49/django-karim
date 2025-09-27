@@ -9,6 +9,11 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <h1>Hello World</h1>
+        <h1>{{title}}</h1>
+        <ul>
+            {% for student in students %}
+                <li>Name: {{student.name}} | Age: {{student.age}}</li>
+            {% endfor %}
+        </ul>
     </body>
 </html>
