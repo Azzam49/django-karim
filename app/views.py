@@ -44,3 +44,14 @@ def home(request):
     }
 
     return render(request, "app/home.html", context)
+
+
+def bootstrap_home(request):
+
+    students = Students.objects.all()
+
+    context = {
+        "students": students
+    }
+
+    return render(request, "app/bootstrap-home.html", context)
