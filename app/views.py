@@ -222,3 +222,11 @@ def create_teacher(request):
     )
 
     return Response({})
+
+
+@api_view(['DELETE'])
+def delete_teacher(request, teacher_id):
+    # get(id = teacher_id) this will raise DoesNotExists error, in case there is not teacher with the given id.
+    teacher = Teacher.objects.get(id = teacher_id)#.delete()
+    teacher.delete()
+    return Response({})

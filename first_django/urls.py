@@ -20,6 +20,7 @@ from app.views import (
     bootstrap_home,
     get_teachers,
     create_teacher,
+    delete_teacher,
 )
 
 urlpatterns = [
@@ -27,5 +28,6 @@ urlpatterns = [
     path("", home),
     path("bootstrap/", bootstrap_home),
     path("get/teachers", get_teachers),
-    path("post/teacher", create_teacher)
+    path("post/teacher", create_teacher),
+    path("delete/teacher/<teacher_id>", delete_teacher)
 ]
