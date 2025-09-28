@@ -9,4 +9,11 @@ class StudentsAdmin(admin.ModelAdmin):
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = [
+        "name",
+        "age",
+        "subject",
+        "is_active",
+        "joined_at",
+    ]
