@@ -16,6 +16,8 @@ class Teacher(models.Model):
     name = models.CharField(max_length=50)
     age = models.IntegerField()
     subject = models.CharField(max_length=20)
+    is_active = models.BooleanField(default=True)
+    joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return f"Name {self.name} | Age: {self.age}, | Subject: {self.subject}"
