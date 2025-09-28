@@ -211,3 +211,14 @@ def get_teachers(request):
     all_teachers = Teacher.objects.all()
     serializer = GetTeachersSerializer(all_teachers, many=True)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def create_teacher(request):
+    Teacher.objects.create(
+        name=request.data.get("name"),
+        age=request.data.get("age"),
+        subject=request.data.get("subject"),
+    )
+
+    return Response({})
