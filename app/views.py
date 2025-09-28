@@ -230,3 +230,14 @@ def delete_teacher(request, teacher_id):
     teacher = Teacher.objects.get(id = teacher_id)#.delete()
     teacher.delete()
     return Response({})
+
+
+@api_view(['PUT'])
+def update_teacher(request, teacher_id):
+    # get(id = teacher_id) this will raise DoesNotExists error, in case there is not teacher with the given id.
+    teacher = Teacher.objects.get(id = teacher_id)
+    teacher.name = request.data.get("name")
+    teacher.age = request.data.get("age")
+    teacher.subject = request.data.get("subject")
+    teacher.save()
+    return Response({})

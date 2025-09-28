@@ -21,6 +21,7 @@ from app.views import (
     get_teachers,
     create_teacher,
     delete_teacher,
+    update_teacher,
 )
 
 urlpatterns = [
@@ -29,5 +30,6 @@ urlpatterns = [
     path("bootstrap/", bootstrap_home),
     path("get/teachers", get_teachers),
     path("post/teacher", create_teacher),
-    path("delete/teacher/<teacher_id>", delete_teacher)
+    path("delete/teacher/<teacher_id>", delete_teacher),
+    path("put/teacher/<teacher_id>", update_teacher)
 ]
