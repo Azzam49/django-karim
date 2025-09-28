@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 from app.models import Students, Teacher
 from django.db.models import Q
+from app.serializers import GetTeachersSerializer
 
 def home(request):
     # ORM : Object Relational Mapping
@@ -201,3 +204,10 @@ def bootstrap_home(request):
     }
 
     return render(request, "app/bootstrap-home.html", context)
+
+
+@api_view(['GET'])
+def get_teachers(request):
+    all_teachers = Teacher.objects.all()
+    serializer = GetTeachersSerializer(all_teachers, many=True)
+    return Response(serializer.data)
