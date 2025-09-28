@@ -38,8 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'app',
 ]
+
+REST_FRAMEWORK = {
+    # disable default auth and allow everyone (dev only!)
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

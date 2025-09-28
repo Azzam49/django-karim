@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 from app.models import Students, Teacher
 from django.db.models import Q
+from app.serializers import GetTeachersSerializer
 
 def home(request):
     # ORM : Object Relational Mapping
@@ -201,3 +204,40 @@ def bootstrap_home(request):
     }
 
     return render(request, "app/bootstrap-home.html", context)
+
+
+@api_view(['GET'])
+def get_teachers(request):
+    all_teachers = Teacher.objects.all()
+    serializer = GetTeachersSerializer(all_teachers, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def create_teacher(request):
+    Teacher.objects.create(
+        name=request.data.get("name"),
+        age=request.data.get("age"),
+        subject=request.data.get("subject"),
+    )
+
+    return Response({})
+
+
+@api_view(['DELETE'])
+def delete_teacher(request, teacher_id):
+    # get(id = teacher_id) this will raise DoesNotExists error, in case there is not teacher with the given id.
+    teacher = Teacher.objects.get(id = teacher_id)#.delete()
+    teacher.delete()
+    return Response({})
+
+
+@api_view(['PUT'])
+def update_teacher(request, teacher_id):
+    # get(id = teacher_id) this will raise DoesNotExists error, in case there is not teacher with the given id.
+    teacher = Teacher.objects.get(id = teacher_id)
+    teacher.name = request.data.get("name")
+    teacher.age = request.data.get("age")
+    teacher.subject = request.data.get("subject")
+    teacher.save()
+    return Response({})
